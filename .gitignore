@@ -1,0 +1,8 @@
+.idea/
+2.iml
+target/classes/.idea/
+target/classes/2.iml
+target/classes/MovieRecommendation.iml
+target/classes/README.md
+target/classes/catalog-v001.xml
+target/classes/pom.xml
