@@ -6,3 +6,6 @@ target/classes/MovieRecommendation.iml
 target/classes/README.md
 target/classes/catalog-v001.xml
 target/classes/pom.xml
+target/classes/*.class
+*.class
+target/classes/Main.class
