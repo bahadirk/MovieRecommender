@@ -12,6 +12,7 @@ public class OntologyManager {
 
     private final String ONTOLOGY_PATH_LOAD = "/Users/bahadirkirdan/IdeaProjects/movieontology.owl";
     private final String ONTOLOGY_PATH_SAVE = "/Users/bahadirkirdan/IdeaProjects/movieontology2.owl";
+    private final String IRI_URI = "http://www.semanticweb.org/bahadirkirdan/ontologies/2016/4/untitled-ontology-44";
 
     OWLOntologyManager ontologyManager;
     OWLOntology ontology;
@@ -19,8 +20,9 @@ public class OntologyManager {
 
     public OntologyManager() throws OWLOntologyCreationException {
 
-        ontologyManager = OWLManager.createOWLOntologyManager();
-        ontologyIRI = IRI.create( new File(ONTOLOGY_PATH_SAVE) );
+        ontologyManager = OWLManager.createOWLOntologyManager ();
+
+        ontologyIRI = IRI.create( new File(ONTOLOGY_PATH_LOAD) );
         ontology = loadOntology(ontologyManager);
 
     }
@@ -35,25 +37,29 @@ public class OntologyManager {
     public void addIndividualToOntology(String individual) throws OWLOntologyStorageException {
 
         OWLDataFactory factory = ontologyManager.getOWLDataFactory();
-
-        OWLClass movieClass = factory.getOWLClass(IRI.create("http://www.semanticweb.org/burakatalay/ontologies/2016/3/movieontology.owl" + "#Movie"));
-        OWLIndividual movieIndividual = factory.getOWLNamedIndividual(IRI.create("http://www.semanticweb.org/burakatalay/ontologies/2016/3/movieontology.owl" + individual));
+/*
+        OWLClass movieClass = factory.getOWLClass(IRI.create(ontologyIRI + "#Movie"));
+        OWLIndividual movieIndividual = factory.getOWLNamedIndividual(IRI.create(ontologyIRI + "#" + individual));
 
         OWLAxiom axiom = factory.getOWLClassAssertionAxiom(movieClass, movieIndividual);
 
         ontologyManager.addAxiom(ontology, axiom);
 
         saveOntology();
+*/
 
-/*
-        OWLObjectProperty hasWife = factory.getOWLObjectProperty(IRI.create(ontologyIRI + "#hasWife"));
+        OWLClass movieClass = factory.getOWLClass(IRI.create(IRI_URI + "#Movie"));
 
-        OWLObjectPropertyAssertionAxiom axiom1 = factory.getOWLObjectPropertyAssertionAxiom(hasWife, john, mary);
+        OWLIndividual movieIndividual = factory.getOWLNamedIndividual(IRI.create(IRI_URI + "#" + individual));
 
-        AddAxiom addAxiom1 = new AddAxiom(ontology, axiom1);
+        OWLAxiom axiom = factory.getOWLClassAssertionAxiom(movieClass, movieIndividual);
+
+        AddAxiom addAxiom1 = new AddAxiom(ontology, axiom);
 
         ontologyManager.applyChange(addAxiom1);
-*/
+
+        saveOntology();
+
         /*
         for(String individual : individuals){
             OWLIndividual john = factory.getOWLNamedIndividual(IRI.create(ontologyIRI + "#" + individual));

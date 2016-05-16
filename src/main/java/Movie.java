@@ -15,8 +15,7 @@ public class Movie {
 
     }
 
-
-    public String getJSON(){
+    public String getMovies(){
 
         client = ClientBuilder.newClient();
         Response response = client.target("http://api.themoviedb.org/3/discover/movie?&api_key="  + API_KEY)
@@ -31,4 +30,5 @@ public class Movie {
 
         return movieJson;
     }
+
 }
