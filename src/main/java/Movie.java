@@ -18,7 +18,7 @@ public class Movie {
     public String getMovies(){
 
         client = ClientBuilder.newClient();
-        Response response = client.target("http://api.themoviedb.org/3/discover/movie?&api_key="  + API_KEY)
+        Response response = client.target("http://api.themoviedb.org/3/discover/movie?&api_key=ca23b5865fc1d0df85240e748a65150f")
                 .request(MediaType.TEXT_PLAIN_TYPE)
                 .header("Accept", "application/json")
                 .get();
